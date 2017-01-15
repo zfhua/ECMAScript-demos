@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ceshi</title>
+  </head>
+  <body>
+    <span>ceshi</span>
+
+    <script type="text/javascript">
+      //
+      // Note:
+      //  对比
+      //  es5 var &&& es6 let
+      //
+
+      //
+      // es5: var 声明：
+      var a = [];
+      for (var i = 0; i < 10; i++) {
+        a[i] = function () {
+          console.log(i);
+        };
+      }
+      a[0](); // 10
+      // 上面代码中，变量i是var声明的，在全局范围内都有效。
+      // 所以每一次循环，新的i值都会覆盖旧值，导致最后输出的是最后一轮的i的值。
+
+      //
+      // es6: let 声明：
+      var a = [];
+      for (let i = 0; i < 10; i++) {
+        a[i] = function () {
+          console.log(i);
+        };
+      }
+      a[6](); // 6
+      //
+      //
+      // es5 解决办法：闭包
+      //
+      // true 闭包解决
+      function val(i){
+          var ss = function(){
+            console.log(i);
+          }
+          return ss;//导出局部变量的函数
+      }
+      var ats = [];
+      for (var i = 0; i < 10; i++) {
+          a[i] = val(i);
+      }
+      a[6]();
+
+
+
+    </script>
+  </body>
+</html>
